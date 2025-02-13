@@ -1,11 +1,11 @@
 banner_start_datetime:
   default: ""
   type: string
-  description: "Start date and time for the banner (YYYY-MM-DD HH:MM)"
+  description: "Start date and time for the banner (YYYY-MM-DD HH:MM UTC)"
 banner_end_datetime:
   default: ""
   type: string
-  description: "End date and time for the banner (YYYY-MM-DD HH:MM)"
+  description: "End date and time for the banner (YYYY-MM-DD HH:MM UTC)"
 enable_banner:
   default: false
   type: bool

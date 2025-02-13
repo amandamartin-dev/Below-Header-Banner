@@ -7,6 +7,23 @@ export default {
     withPluginApi("0.8", (api) => {
       this.siteSettings = container.lookup("service:site-settings");
 
+      function parseToUTC(datetime) {
+        if (!datetime) return null;
+      
+        // Ensure the input string follows the correct format
+        const isoString = datetime.includes("Z") ? datetime : datetime.replace(" ", "T") + "Z";
+      
+        const date = new Date(isoString);
+      
+        // Validate if the date is correctly parsed
+        if (isNaN(date.getTime())) {
+          console.warn(`Invalid datetime format detected: ${datetime}. Ensure it's in 'YYYY-MM-DD HH:MM UTC' format.`);
+          return null;
+        }
+      
+        return date;
+      }
+      
       api.onPageChange(() => {
         try {
           const allowedRoutes = settings.display_on_routes
@@ -14,8 +31,8 @@ export default {
           const component = document.querySelector(".custom-below-header");
 
           const now = new Date();
-          const startTime = settings.banner_start_datetime ? new Date(settings.banner_start_datetime.replace(" ", "T")) : null;
-          const endTime = settings.banner_end_datetime ? new Date(settings.banner_end_datetime.replace(" ", "T")) : null;
+          const startTime = parseToUTC(settings.banner_start_datetime);
+          const endTime = parseToUTC(settings.banner_end_datetime);
       
           const isWithinTimeRange =
             (!startTime || now >= startTime) &&
