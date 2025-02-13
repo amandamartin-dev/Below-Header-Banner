@@ -1,5 +1,9 @@
+:root {
+  --banner-background-color: {{theme-setting 'banner_background_color'}};
+} 
+
 .custom-below-header {
-  background-color: #06063a;
+  background-color:var(--banner-background-color, #06063a);
     height: 40px;
     width: 100%;
     padding: 0 12px; /* Adds some padding inside the header */
