@@ -1,7 +1,7 @@
 <div class="custom-below-header" style={{htmlSafe (concat "background-color: " (theme-setting 'banner_background_color') ";")}}>
         <div class="content">
           <a href={{theme-setting 'custom_link_url'}} target="_blank" rel="noopener noreferrer">
-            {{theme-setting 'custom_link_text'}}
+            {{htmlSafe (theme-setting 'custom_link_text')}}
           </a>
           <svg class="custom-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
             <path d="M0.0569115 8V3.41463H9.58537L6.08943 0H7.78049L11.9431 4L7.78049 8H6.08943L9.58537 4.58537H1.26016V8H0.0569115Z" fill="currentColor"/>
