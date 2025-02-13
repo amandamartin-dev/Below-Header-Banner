@@ -13,7 +13,15 @@ export default {
           const currentPath = window.location.pathname;
           const component = document.querySelector(".custom-below-header");
 
-          if (settings.enable_banner && component) {
+          const now = new Date();
+          const startTime = settings.banner_start_datetime ? new Date(settings.banner_start_datetime.replace(" ", "T")) : null;
+          const endTime = settings.banner_end_datetime ? new Date(settings.banner_end_datetime.replace(" ", "T")) : null;
+      
+          const isWithinTimeRange =
+            (!startTime || now >= startTime) &&
+            (!endTime || now <= endTime);
+
+          if (settings.enable_banner && component && isWithinTimeRange) {
             const shouldDisplay = allowedRoutes.split("|").some((route) => {
               if (route.endsWith("*")) {
                 return currentPath.startsWith(route.slice(0, -1));
